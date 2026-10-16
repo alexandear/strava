@@ -1,0 +1,27 @@
+[project]
+name = "strava"
+version = "0.1.0"
+description = "Tooling for a personal Strava account"
+readme = "README.md"
+authors = [{ name = "Oleksandr Redko", email = "oleksandr.red+github@gmail.com" }]
+requires-python = ">=3.14"
+dependencies = [
+    "rich>=15.0.0",
+    "stravalib>=2.6.0",
+]
+
+[project.scripts]
+top-kudoers = "strava.top_kudoers:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
