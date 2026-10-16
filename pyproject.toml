@@ -11,7 +11,8 @@ dependencies = [
 ]
 
 [project.scripts]
-top-kudoers = "strava.top_kudoers:main"
+top-kudoers = "strava.cli:top_kudoers"
+kudos-from = "strava.cli:kudos_from"
 
 [dependency-groups]
 dev = [

@@ -5,6 +5,7 @@ Tooling for working with a personal Strava account via the [Strava API](https://
 ## Tools
 
 - `top-kudoers` — lists athletes who gave kudos to your activities over the last N months, sorted by kudos count (descending).
+- `kudos-from` — lists your activities that got kudos from one or more given athletes, with a ✓ column per athlete.
 
 ## Setup
 
@@ -23,7 +24,10 @@ Requires [uv](https://docs.astral.sh/uv/).
 ```sh
 uv run --env-file .env top-kudoers             # last 6 months
 uv run --env-file .env top-kudoers --months 12
+uv run --env-file .env kudos-from "Jane D." "John S."
 ```
+
+Names must match the `top-kudoers` output exactly (e.g. `Jane D.` with the dot); when a name has no kudos, similar names are suggested.
 
 Example output:
 
@@ -42,7 +46,7 @@ On the first run a browser tab opens to authorize the app (scope `activity:read_
 Notes:
 
 - Strava only exposes the kudoer's first name and last initial (no athlete ID), so different athletes with the same short name are counted together, and links point to Strava athlete search rather than a profile.
-- Kudoers are cached per activity in `~/.cache/strava/kudoers.json` and refetched only when the activity's kudos count changes. Delete the file to start fresh.
+- Kudoers (plus activity name, date, and type) are cached per activity in `~/.cache/strava/kudoers.json` and refetched only when the activity's kudos count changes. Delete the file to start fresh.
 - Each uncached activity with kudos costs one API request. The default rate limit is 100 requests per 15 minutes, so long periods take a while; the client waits out the limit automatically.
 
 ## Development
